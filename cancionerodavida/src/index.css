@@ -1,0 +1,59 @@
+body {
+  margin: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: whitesmoke;
+}
+
+/*NavBar*/
+
+nav a{
+  text-decoration: none;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: white;
+  margin-left: 15px;
+}
+
+nav button {
+  margin-left: 15px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+nav {
+  background-color: purple;
+  padding: 5px;
+
+}
+
+/* Inicio */
+
+.bodyInicio {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+  
+}
+
+.cajaInicio {
+  display: block;
+  text-align: center;
+  justify-content: space-evenly;
+  border: 5px solid purple;
+  border-radius: 5px;
+  width: 50%;
+  padding: 10px;
+  background-color: pink;
+}
+
+.cajaInicio button {
+  margin-left: 5px;
+  font-family: Verdana;
+  background-color: blueviolet;
+  color: white;
+  border: 0;
+  border-radius: 3px;
+  padding: 5px;
+}
