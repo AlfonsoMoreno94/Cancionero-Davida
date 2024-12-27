@@ -1,27 +1,25 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Context from '../context/Context';
 
 
 function Login() {
-  const {login, logout, profile} = useContext(Context)
+  const {login, logout, perfil} = useContext(Context)
+
+  console.log(perfil)
 
   return (
       <div>
-          <h2>React Google Login</h2>
-          <br />
-          <br />
-          {profile ? (
+          {perfil ? (
               <div>
-                  <img src={profile.picture} alt="user" />
                   <h3>User Logged in</h3>
-                  <p>Name: {profile.name}</p>
-                  <p>Email Address: {profile.email}</p>
+                  <p>Name: {perfil.name}</p>
+                  <p>Email Address: {perfil.email}</p>
                   <br />
                   <br />
                   <button onClick={logout}>Log out</button>
               </div>
           ) : (
-              <button onClick={() => login()}>Sign in with Google 🚀 </button>
+              <button onClick={login}>Sign in with Google 🚀 </button>
           )}
       </div>
   );

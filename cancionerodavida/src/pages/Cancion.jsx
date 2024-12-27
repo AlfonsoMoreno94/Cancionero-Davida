@@ -1,27 +1,42 @@
-import React, { useContext } from 'react'
-import {useParams} from "react-router-dom"
+import React, { useContext, useEffect, useState } from 'react'
+import {useSearchParams} from "react-router-dom"
 import Context from '../context/Context'
+import axios from 'axios'
 
 const Cancion = () => {
-  const {cancion} = useParams()
-  const {canciones} = useContext(Context)
-
-  const buscarCancion = (song) => {
-    return song.nombre.toLowerCase() === cancion.toLowerCase()
-  }
-
-  const cancionEncontrada = canciones.find(song => buscarCancion(song))
-
-  if (!cancionEncontrada) { return <div><p>Canción no encontrada</p></div>; }
+  const {busqueda, dispatch, marcarFavorito, desmarcarFavorito} = useContext(Context)
+  const [searchParams] = useSearchParams()
   
-  console.log(cancion)
-  console.log(canciones)
-  console.log(cancionEncontrada)
-  
+  useEffect(() => {
+
+    const nombre = searchParams.get("nombre")
+
+      axios.get('http://localhost:5000/api/cancion', {
+            params: {
+                nombre: nombre,
+            }
+        })
+        .then(response => {
+            dispatch({ type: "GET_ITEMS", payload: response.data });
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        })
+    }, [dispatch, searchParams]);
+
+
+
+  if (!busqueda) {return <div><p>Canción no encontrada</p></div>;
+ }
+  else {
   return (
-    <div><h1>{cancionEncontrada.nombre} de {cancionEncontrada.autor}</h1>
-      <p>{cancionEncontrada.letra}</p></div>
-  )
+    <div>{busqueda.items.map((cancion, index) => (
+    <div key={index}><h1>{cancion.nombre} de {cancion.autor}</h1>
+    <button onClick={() => marcarFavorito(cancion.id)}>Favorito</button>
+    <button onClick={() => desmarcarFavorito(cancion.id)}>Quitar favorito</button>
+    <p>{cancion.letra}</p>
+    <p>{cancion.id}</p></div>))} </div>
+  )}
 }
 
 export default Cancion
