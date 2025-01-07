@@ -9,10 +9,10 @@ CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000"}})
 # Configuración de la base de datos MySQL
 
 db = pymysql.connect(
-    host="localhost",
-    user="root",
-    password="14111994aA+",
-    database="cancionero",
+    host="XXX",
+    user="XXX",
+    password="XXX",
+    database="XXX",
 )
 
 # Buscador de inicio
